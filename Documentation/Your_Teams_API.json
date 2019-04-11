@@ -1,0 +1,658 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "description": "This app filters players to make it easier to create your teams. this app has a notes scheme to avoid players from other categories.",
+    "version": "1.0.0",
+    "title": "Your Teams",
+    "contact": {
+      "email": "yourteams.net@gmail.com"
+    },
+    "license": {
+      "name": "GPL 3.0",
+      "url": "https://www.gnu.org/licenses/gpl-3.0.html"
+    }
+  },
+  "tags": [
+    {
+      "name": "Your Teams",
+      "description": "Create Your Own Teams For Free",
+      "externalDocs": {
+        "description": "Host Page",
+        "url": "http://yourteams.net"
+      }
+    }
+  ],
+  "paths": {
+    "/SignUp": {
+      "post": {
+        "tags": [
+          "UserEntity"
+        ],
+        "summary": "Register a new user entity in the DB system",
+        "description": "This can be done by anyone.",
+        "operationId": "SignUp",
+        "responses": {
+          "200": {
+            "description": "Successfully Inserted"
+          },
+          "400": {
+            "description": "This username or email already exists"
+          },
+          "503": {
+            "description": "Several error on DB Server"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserEntity"
+              }
+            }
+          },
+          "description": "Inserted user entity object into DB",
+          "required": true
+        }
+      }
+    },
+    "/Login": {
+      "post": {
+        "tags": [
+          "UserEntity"
+        ],
+        "summary": "Logs the user entity into the system",
+        "description": "",
+        "operationId": "Login",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "headers": {
+              "X-Rate-Limit": {
+                "description": "calls made by the user last up to 30 minutes",
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "X-Expires-After": {
+                "description": "date in UTC when token expires",
+                "schema": {
+                  "type": "string",
+                  "format": "date-time"
+                }
+              }
+            },
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid username/password supplied"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserEntityVerify"
+              }
+            }
+          },
+          "description": "Loged user successfully",
+          "required": true
+        }
+      }
+    },
+    "/{username}/YourAccount&q=UpdateSingle": {
+      "put": {
+        "tags": [
+          "UserEntity"
+        ],
+        "summary": "Updated Single user entity",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "UpdatedSingle",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "description": "name that need to be updated",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid user entity supplied"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserEntityUpdateSingle"
+              }
+            }
+          },
+          "description": "Updated single user entity object. Used for modify password, email and username.",
+          "required": true
+        }
+      }
+    },
+    "/{username}/YourAccount&q=Update": {
+      "put": {
+        "tags": [
+          "UserEntity"
+        ],
+        "summary": "Updated user entity",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "Update",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "description": "name that need to be updated",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid user entity supplied"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserEntityUpdate"
+              }
+            }
+          },
+          "description": "Updated user object",
+          "required": true
+        }
+      }
+    },
+    "/{username}/YourAccount&q=Disable": {
+      "put": {
+        "tags": [
+          "UserEntity"
+        ],
+        "summary": "Disable user entity",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "Disable",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "description": "name that need to be updated",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid user supplied"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserEntityVerifyPassword"
+              }
+            }
+          },
+          "description": "Updated user entity object",
+          "required": true
+        }
+      }
+    },
+    "/{username}/YourAccount&q=Delete": {
+      "delete": {
+        "tags": [
+          "UserEntity"
+        ],
+        "summary": "Delete user entity",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "Delete",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "description": "name that need to be updated",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid user supplied"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/Search/User&q={username}": {
+      "get": {
+        "tags": [
+          "UserEntity"
+        ],
+        "summary": "Get user entity by username",
+        "description": "",
+        "operationId": "getUnique",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "description": "The search username",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserEntity"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserEntity"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid username supplied"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/Search/Users&p={position}}&v={value}": {
+      "get": {
+        "tags": [
+          "UserEntity"
+        ],
+        "summary": "Get user entity by position",
+        "description": "",
+        "operationId": "getUserByName",
+        "parameters": [
+          {
+            "name": "position",
+            "in": "path",
+            "description": "Position of the struct",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "value",
+            "in": "path",
+            "description": "Value of the position",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserEntity"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserEntity"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid username supplied"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/Search/Users": {
+      "get": {
+        "tags": [
+          "UserEntity"
+        ],
+        "summary": "List all users enabled",
+        "description": "",
+        "operationId": "list",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserEntity"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserEntity"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid username supplied"
+          },
+          "403": {
+            "description": "Don't have access rights"
+          },
+          "404": {
+            "description": "Users not found"
+          }
+        }
+      }
+    },
+    "/Search/UsersAll": {
+      "get": {
+        "tags": [
+          "UserEntity"
+        ],
+        "summary": "List all users enabled and disabled",
+        "description": "",
+        "operationId": "list",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserEntity"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserEntity"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid username supplied"
+          },
+          "403": {
+            "description": "Don't have access rights"
+          },
+          "404": {
+            "description": "Users not found"
+          }
+        }
+      }
+    },
+    "/{username}&q=solicitacao": {
+      "post": {
+        "tags": [
+          "UserFriend"
+        ],
+        "summary": "Add a new connection between two users in the DB system. In the same time this same operation can active this connection.",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "AddFriend",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "description": "User home page",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully Sent or Successfully Added"
+          },
+          "400": {
+            "description": "This operation cannot be done."
+          },
+          "503": {
+            "description": "Several error on DB Server"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserFriend"
+              }
+            }
+          },
+          "description": "Inserted user entity object into DB",
+          "required": true
+        }
+      }
+    },
+    "/{username}&q=undofriendship": {
+      "delete": {
+        "tags": [
+          "UserFriend"
+        ],
+        "summary": "Delete the connection between two users in the DB system.",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "Delete",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "description": "User home page",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully Deleted"
+          },
+          "400": {
+            "description": "This username or email already exists"
+          },
+          "503": {
+            "description": "Several error on DB Server"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "requestBodies": {
+      "UserArray": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/UserEntity"
+              }
+            }
+          }
+        },
+        "description": "List of user object",
+        "required": true
+      }
+    },
+    "schemas": {
+      "UserEntity": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "image": {
+            "type": "string"
+          },
+          "admin": {
+            "type": "boolean"
+          },
+          "enable": {
+            "type": "boolean"
+          }
+        },
+        "xml": {
+          "name": "UserEntity"
+        }
+      },
+      "UserEntityVerify": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        },
+        "xml": {
+          "name": "UserEntityVerify"
+        }
+      },
+      "UserEntityVerifyPassword": {
+        "type": "object",
+        "properties": {
+          "password": {
+            "type": "string"
+          }
+        },
+        "xml": {
+          "name": "UserEntityVerifyPassword"
+        }
+      },
+      "UserEntityUpdateSingle": {
+        "type": "object",
+        "properties": {
+          "password": {
+            "type": "string"
+          },
+          "position": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "xml": {
+          "name": "UserEntityUpdateSingle"
+        }
+      },
+      "UserEntityUpdate": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "image": {
+            "type": "string"
+          },
+          "admin": {
+            "type": "boolean"
+          },
+          "enable": {
+            "type": "boolean"
+          }
+        },
+        "xml": {
+          "name": "UserEntityUpdate"
+        }
+      },
+      "UserFriend": {
+        "type": "object",
+        "properties": {
+          "user1": {
+            "type": "string"
+          },
+          "user2": {
+            "type": "string"
+          },
+          "whoblock": {
+            "type": "string"
+          },
+          "user1enable": {
+            "type": "boolean"
+          },
+          "user2enable": {
+            "type": "boolean"
+          },
+          "operator": {
+            "type": "integer"
+          }
+        },
+        "xml": {
+          "name": "UserFriend"
+        }
+      }
+    }
+  }
+}

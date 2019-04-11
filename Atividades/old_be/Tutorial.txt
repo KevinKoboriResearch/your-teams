@@ -1,0 +1,77 @@
+TUTORIAL: Utilizarei o meu projeto como exemplo para realizar este tutorial, ou seja, se não funcionar provavel que
+          seja um problema de configuração do seu GOPATH, GOROOT ou até mesmo da versão do seu GO ou arquivos danificados!
+
+FÁCIL INSTALACAO DO GO NO UBUNTU: Leia com atenção, não é necessário o primeiro passo, update/upgrade!
+    https://tecadmin.net/install-go-on-ubuntu/
+
+VAMOS LA:
+
+    Abra 2 Terminais: 1 Terminal para rodar o servidor e 2 Terminal para rodar o teste!
+
+    Regra: nesse exemplo sempre que aparecer [] significa que é um comando no terminal!
+
+    Exemplo para LINUX, porém funciona bem parecido no MAC!
+
+    Não se preocupe com erros durante o processo, leia o arquivo atentamente até o final, pois nesse exemplo utilizo
+    alguns pacotes que o professor CAIO não ensinou ainda!
+
+    NAO esquecam de dar o export do GOPATH para a pasta em que se encontra o seu projeto!
+    no caso desse exemplo seria: export GOPATH=/home/uniceub/workspace(não faça isso agora, comando aparecerá logo abaixo)
+
+    Terminal 1:
+        crie um path para que o GO chegue até o seu projeto, pode ser em qualquer pasta presente no seu PC!
+            no caso desse exemplo seria: /Home/uniceub/workspace
+
+            [] cd /home/uniceub
+            [] mkdir workspace
+            [] cd workspace
+            [] export GOPATH=/Home/uniceub/workspace
+
+            obs: não se preocupe, o GO reconhecerá seus fontes que estiverem dentro de workspace/...
+
+        [] cd /home/uniceub/workspace
+
+        crie uma pasta chamada "src" e dentro dela de um git clone "link do github"
+
+            ex: [] git clone https://github.com/UniCEUB-WEBDevelopment-2018-1/Leonardo-Felipe--Kevin-Kobori.git
+
+
+        Agora rode o MONGODB:
+
+            Comando no MAC tendo homebrew e mongodb:
+
+            []brew services start mongodb
+
+            Comando no LINUX tendo mongodb:
+
+            [] sudo service mongod start
+
+        agora de um cd no caminho do seu projeto até chegar em seu arquivo main.go!
+            no caso desse exemplo seria:
+
+            [] cd Leonardo-Felipe--Kevin-Kobori/be
+            [] go build
+            [] ./be
+
+            obs: Pronto, o servidor está no ar!
+
+    Terminal 2:
+        cd /home/uniceub/workspace/src/nomeprojetogit/caminhoatéoarquivoteste.go
+            no caso desse exemplo seria:
+            [] cd /home/uniceub/workspace/src/Leonardo-Felipe--Kevin-Kobori/be/test
+            [] go test
+
+            obs: pronto, o servidor está respondendo como esperado!
+
+    OBS FINAIS:
+        É preciso dar go get em todos os pacotes que estão faltando!
+
+            ex: [] go get gopkg.in/mgo.v2
+                [] go get github.com/gorilla/mux
+            ...
+            e assim vai, até todos os "pacotes" sejam baixados!
+
+            obs: NAO esquecam de dar o export dito la no inicio... para a pasta em que se encontra o seu projeto!
+                 no meu caso seria: export GOPATH=/home/uniceub/workspace
+
+Se ficou confuso com algo, me contate para tirar suas dúvidas ou até mesmo para eu melhorar esse tutorial!

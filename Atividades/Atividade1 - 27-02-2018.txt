@@ -1,0 +1,23 @@
+Google Maps API:
+Methods: GET, POST
+Path: maps, json, documentation
+Parametros: units, origins, destinations, key
+Reference: https://developers.google.com/maps/documentation/distance-matrix/start
+Obs: Alguns parametros como "origins" são obrigatorios, pois ele representa o ponto inicial do calculo do tempo e distancia do percurso.
+------------------------------------------------------------------------------------------------------------------
+YouTube API:
+Methods: GET, POST, PUT, DELETE
+Path: activity, comment, playlist, channel
+Parameters: part, snippet, contentDetails, status, fields
+Reference: https://developers.google.com/youtube/v3/getting-started
+Obs: alguns parametros tem sintaxe complexa, com utilização de XPath. Um exemplo seria a utilização do parametro fields, 
+esse que permite remover propriedades agrupadas do parametro reduzindo o uso de largura de banda, coisa que o parametro part não consegue fazer sozinho.
+------------------------------------------------------------------------------------------------------------------
+
+Spotify API:
+Methods: GET, POST, PUT, DELETE
+Path: party, wizzler, track
+Query String: album_type, label, popularity, genres
+Reference: https://beta.developer.spotify.com/documentation/web-api/
+Obs: Todas as respostas são retornadas em JSON.
+------------------------------------------------------------------------------------------------------------------
