@@ -47,7 +47,7 @@ func sendGet(path string) (req *http.Response) {
 	return req
 }
 
-//__ SEND PUT ________________________________________________________________//
+//__ SEND DELETE ______________________________________________________________//
 func sendDelete(path string, request string, token string) (resp *http.Response, err error) {
 	c := &client
 	req, _ := http.NewRequest("DELETE", path, stringToReader(request))
