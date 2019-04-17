@@ -3,6 +3,7 @@ package HyperText
 import (
 	"github.com/gorilla/mux"
 	"net/http"
+	"log"
 )
 
 type Route struct {
@@ -15,6 +16,8 @@ type Route struct {
 type Routes []Route
 
 func NewRouter(routes []Route) *mux.Router {
+/*________________________________________TESTING FUNCTION________________________________________*/log.Println("\n\n...\n")
+
 	router := mux.NewRouter()
 	for _, route := range routes {
 		var handler http.Handler

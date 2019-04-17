@@ -3,6 +3,8 @@ package HyperText
 import (
 	"encoding/json"
 	"net/http"
+	"log"
+	"html/template"
 )
 
 type Response struct {
@@ -129,27 +131,56 @@ var (
 		511: `Network Authentication Required`,
 		599: `Network Connect Timeout Error`,
 	}
+
+	tpl *template.Template
+
+	TemplateResponses = map[string]string{
+		`index`:          		 	 "index.gohtml",
+		`sign-up`:					 "sign-up.gohtml",
+		`success-insert`:          	 "success-insert.gohtml",
+		`user-signup-success`:       "user-signup-success.gohtml",
+		`wrong-body`:          		 "wrong-body.gohtml",
+		`error-database`:          	 "error-database.gohtml",
+	}
 )
 
+func init() {
+	tpl = template.Must(template.ParseGlob("./HyperText/templates/*.gohtml"))
+}
+
+func HttpTemplateResponse(w http.ResponseWriter, code int, payloadTemplate string, goHtmlstruct interface{}) {
+/*________________________________________TESTING FUNCTION________________________________________*/
+log.Println("\n\n...\n")
+	tpl.ExecuteTemplate(w, payloadTemplate, goHtmlstruct)
+}
+
 func HttpTestResponse(w http.ResponseWriter, code int, payload string) {
+/*________________________________________TESTING FUNCTION________________________________________*/log.Println("\n\n...\n")
+
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 	w.WriteHeader(code)
 	w.Write([]byte(TestResponses[payload]))
 }
 
 func HttpTrueResponse(w http.ResponseWriter, code int, payload []byte) {
+/*________________________________________TESTING FUNCTION________________________________________*/log.Println("\n\n...\n")
+
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 	w.WriteHeader(code)
 	w.Write(payload)
 }
 
 func HttpResponse(w http.ResponseWriter, code int, payload interface{}) {
+/*________________________________________TESTING FUNCTION________________________________________*/log.Println("\n\n...\n")
+
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 	w.WriteHeader(code)
 	json.NewEncoder(w).Encode(payload)
 }
 
 func HttpErrorResponse(w http.ResponseWriter, code int, payload interface{}) {
+/*________________________________________TESTING FUNCTION________________________________________*/log.Println("\n\n...\n")
+
 	r := Response{
 		StatusCode: code,
 		Message:    payload.(string),
@@ -160,6 +191,8 @@ func HttpErrorResponse(w http.ResponseWriter, code int, payload interface{}) {
 }
 
 func HttpSpecificErrorResponse(w http.ResponseWriter, code int, payload interface{}) {
+/*________________________________________TESTING FUNCTION________________________________________*/log.Println("\n\n...\n")
+
 	r := Response{
 		StatusCode: code,
 		Message:    CustomResponses[payload.(string)],

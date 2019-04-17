@@ -4,15 +4,38 @@ import (
 	"gopkg.in/go-playground/validator.v9"
 	"log"
 	"net/http"
+	"bytes"
+	//"encoding/json"
 )
 
 var Validate *validator.Validate
 
 func StartValidator() {
+/*________________________________________TESTING FUNCTION________________________________________*/
+log.Println("\n\nHyperText.StartValidator()\n")
+
 	Validate = validator.New()
 }
 
+func BodyValidateJson(j *bytes.Reader, entity interface{}) interface{} {
+/*________________________________________TESTING FUNCTION________________________________________*/
+log.Println("\n\nnHyperText.BodyValidate()\n")
+
+	if err := DecodeJson(j, entity); err != nil {
+		log.Println("[ERROR] Can't decode json: ", err)
+		return CustomResponses["wrong-json"]
+	}
+	if err := StructValidate(entity); err != nil {
+		log.Println("[ERROR] Can't validate struct: ", err)
+		return err
+	}
+	return nil
+}
+
 func BodyValidate(r *http.Request, entity interface{}) interface{} {
+/*________________________________________TESTING FUNCTION________________________________________*/
+log.Println("\n\nnHyperText.BodyValidate()\n")
+
 	if err := DecodeJson(r.Body, entity); err != nil {
 		log.Println("[ERROR] Can't decode json: ", err)
 		return CustomResponses["wrong-json"]
@@ -25,6 +48,9 @@ func BodyValidate(r *http.Request, entity interface{}) interface{} {
 }
 
 func StructValidate(entity interface{}) interface{} {
+/*________________________________________TESTING FUNCTION________________________________________*/
+log.Println("\n\n...\n")
+
 	err := Validate.Struct(entity)
 	if err != nil {
 		log.Println("[ERROR] Can't validate struct: ", err)

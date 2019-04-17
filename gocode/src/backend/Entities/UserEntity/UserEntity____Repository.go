@@ -3,10 +3,12 @@ package UserEntity
 import (
 	"backend/Interface"
 	"strings"
+	"log"
 )
 
 //___________________________ INSERT _________________________________________//
 func (r UserEntityRepository) InsertUserEntity(ue UserEntity) (err error) {
+/*________________________________________TESTING FUNCTION________________________________________*/log.Println("\n\nInsertUserEntity\n")
 
 	ue.Username = strings.ToLower(ue.Username)
 	ue.Email = strings.ToLower(ue.Email)
@@ -20,6 +22,7 @@ func (r UserEntityRepository) InsertUserEntity(ue UserEntity) (err error) {
 
 //___________________________ VERIFY _________________________________________//
 func (r UserEntityRepository) VerifyUserEntity(c *UserEntityController, uev UserEntityVerify) string {
+/*________________________________________TESTING FUNCTION________________________________________*/log.Println("\n\n...\n")
 
 	uev.Username = strings.ToLower(uev.Username)
 
@@ -46,6 +49,7 @@ func (r UserEntityRepository) VerifyUserEntity(c *UserEntityController, uev User
 
 //___________________________ UPDATE SINGLE __________________________________//
 func (r UserEntityRepository) UpdateSingleUserEntity(ueus UserEntityUpdateSingle) (err error) {
+/*________________________________________TESTING FUNCTION________________________________________*/log.Println("\n\n...\n")
 
 	ueus.Username = strings.ToLower(ueus.Username)
 	ueus.Position = strings.ToLower(ueus.Position)
@@ -65,6 +69,7 @@ func (r UserEntityRepository) UpdateSingleUserEntity(ueus UserEntityUpdateSingle
 
 //___________________________ UPDATE _________________________________________//
 func (r UserEntityRepository) UpdateUserEntity(ueu UserEntityUpdate) (err error) {
+/*________________________________________TESTING FUNCTION________________________________________*/log.Println("\n\n...\n")
 
 	ueu.Username = strings.ToLower(ueu.Username)
 	ueu.Email = strings.ToLower(ueu.Email)
@@ -76,6 +81,7 @@ func (r UserEntityRepository) UpdateUserEntity(ueu UserEntityUpdate) (err error)
 
 //___________________________ GET ENTITY _____________________________________//
 func (r UserEntityRepository) GetUserEntity(uep *UserEntityProtected) (err error) {
+/*________________________________________TESTING FUNCTION________________________________________*/log.Println("\n\n...\n")
 
 	err = Interface.FindDB(DOCNAME, ID_USERNAME, uep.Username, &uep)
 
@@ -84,6 +90,7 @@ func (r UserEntityRepository) GetUserEntity(uep *UserEntityProtected) (err error
 
 //___________________________ GET ALL ENABLED WHILE __________________________//
 func (r UserEntityRepository) GetAllEnabledWhileUserEntities(position string, value string, ues UserEntities) (UserEntities, error) {
+/*________________________________________TESTING FUNCTION________________________________________*/log.Println("\n\n...\n")
 
 	err := Interface.FindAllEnabledWhileDB(DOCNAME, position, value, &ues)
 
@@ -92,6 +99,7 @@ func (r UserEntityRepository) GetAllEnabledWhileUserEntities(position string, va
 
 //___________________________ GET ALL ENABLED ________________________________//
 func (r UserEntityRepository) GetAllEnabledUserEntities(ues UserEntities) (UserEntities, error) {
+/*________________________________________TESTING FUNCTION________________________________________*/log.Println("\n\n...\n")
 
 	err := Interface.FindAllEnabledDB(DOCNAME, &ues)
 
@@ -100,6 +108,7 @@ func (r UserEntityRepository) GetAllEnabledUserEntities(ues UserEntities) (UserE
 
 //___________________________ GET ALL ________________________________________//
 func (r UserEntityRepository) GetAllUserEntities(ues UserEntities) (UserEntities, error) {
+/*________________________________________TESTING FUNCTION________________________________________*/log.Println("\n\n...\n")
 
 	err := Interface.FindAllDB(DOCNAME, &ues)
 
@@ -108,6 +117,7 @@ func (r UserEntityRepository) GetAllUserEntities(ues UserEntities) (UserEntities
 
 //___________________________ DELETE _________________________________________//
 func (r UserEntityRepository) DeleteUserEntity(username string) (err error) {
+/*________________________________________TESTING FUNCTION________________________________________*/log.Println("\n\n...\n")
 
 	err = Interface.DeleteDB(DOCNAME, ID_USERNAME, username, ue)
 
@@ -116,6 +126,7 @@ func (r UserEntityRepository) DeleteUserEntity(username string) (err error) {
 
 //___________________________ ENABLE _________________________________________//
 func (r UserEntityRepository) EnableUserEntity(ue UserEntity) (err error) {
+/*________________________________________TESTING FUNCTION________________________________________*/log.Println("\n\n...\n")
 
 	if ue.Enable != true {
 		err = Interface.UpdateSingleDB(DOCNAME, ID_USERNAME, ue.Username, "enable", true)
@@ -126,6 +137,7 @@ func (r UserEntityRepository) EnableUserEntity(ue UserEntity) (err error) {
 
 //___________________________ DISABLE ________________________________________//
 func (r UserEntityRepository) DisableUserEntity(uev UserEntityVerify) string {
+/*________________________________________TESTING FUNCTION________________________________________*/log.Println("\n\n...\n")
 
 	uev.Username = strings.ToLower(uev.Username)
 
@@ -152,6 +164,7 @@ func (r UserEntityRepository) DisableUserEntity(uev UserEntityVerify) string {
 
 //__ ADMIN VERIFY ____________________________________________________________//
 func AdminVerify(uev UserEntityVerify) (UserEntity, bool) {
+/*________________________________________TESTING FUNCTION________________________________________*/log.Println("\n\n...\n")
 
 	uev.Username = strings.ToLower(uev.Username)
 

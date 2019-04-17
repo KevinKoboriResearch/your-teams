@@ -2,16 +2,19 @@ package UserEntity
 
 import (
 	"backend/HyperText"
+	"log"
 )
 
 //__ ROUTES __________________________________________________________________//
 func UserEntityRoutes() HyperText.Routes {
+/*________________________________________TESTING FUNCTION________________________________________*/log.Println("\n\nUserEntityRoutes\n")
+
 	routes := HyperText.Routes{
 		HyperText.Route{ //___________________ FUNCIONANDO _______________________//
-			"SignUp - User Entity",
+			"Register - User Entity",
 			"POST",
-			"/SignUp",
-			controller.SignUp,
+			"/Register",
+			controller.Register,
 		},
 		HyperText.Route{ //___________________ FUNCIONANDO _______________________//
 			"Login - User Entity",

@@ -1,5 +1,9 @@
 package Interface
 
+import(
+	"log"
+)
+
 type Name struct {
 	Name string `json:"name"`
 }
@@ -17,5 +21,8 @@ const (
 var docname string
 
 func PutDOCNAME(doc string) {
+/*________________________________________TESTING FUNCTION________________________________________*/
+log.Println("\n\nInterface.PutDOCNAME()\n")
+
 	docname = doc
 }

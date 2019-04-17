@@ -1,0 +1,42 @@
+package main
+
+import (
+	"net/http"
+	//"io"
+	"html/template"
+)
+
+var tpl *template.Template
+
+func init() {
+	tpl = template.Must(template.ParseGlob("templates/*.gohtml"))
+}
+
+func main() {
+	http.HandleFunc("/", index)
+	http.HandleFunc("/process", processor)
+	http.ListenAndServe(":8080", nil)
+}
+
+func index(w http.ResponseWriter, r *http.Request) {
+	tpl.ExecuteTemplate(w, "index.gohtml", nil)
+	//io.WriteString(w, "hello fcc")
+}
+
+func processor(w http.ResponseWriter, r *http.Request) {
+	if r.Method != "POST" {
+		http.Redirect(w, r, "/", http.StatusSeeOther)
+	}
+	fname := r.FormValue("firster")
+	lname := r.FormValue("laster")
+
+	d := struct {
+		First string
+		Last string
+	}{
+		First: fname,
+		Last: lname,
+	}
+
+	tpl.ExecuteTemplate(w, "processor.gohtml", d)
+}

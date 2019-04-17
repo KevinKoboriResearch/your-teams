@@ -20,12 +20,18 @@ type MyClaimsType struct {
 var routes = HyperText.Routes{{}}
 
 func CreateAuthRoutes() HyperText.Routes {
+/*________________________________________TESTING FUNCTION________________________________________*/
+log.Println("\n\nCreateAuthRoutes\n")
+
 	routes := HyperText.Routes{}
 
 	return routes
 }
 
 func SetAuthenticatedMiddleware(r func(http.ResponseWriter, *http.Request)) (n *negroni.Negroni) {
+/*________________________________________TESTING FUNCTION________________________________________*/
+log.Println("\n\nInterface.SetAuthenticatedMiddleware()\n")
+
 	n = negroni.New(negroni.HandlerFunc(ValidateToken), negroni.Wrap(http.HandlerFunc(r)))
 	return
 }
@@ -36,6 +42,9 @@ var (
 )
 
 func init() {
+/*________________________________________TESTING FUNCTION________________________________________*/
+log.Println("\n\nInterface.init()\n")
+
 	privateBytes, err := ioutil.ReadFile("./Interface/auth_________private.rsa")
 
 	if err != nil {
@@ -62,6 +71,8 @@ func init() {
 }
 
 func GenerateJWT(user interface{}) string {
+/*________________________________________TESTING FUNCTION________________________________________*/log.Println("\n\n...\n")
+
 	claims := MyClaimsType{
 		StandardClaims: jwt.StandardClaims{
 			ExpiresAt: time.Now().Add(time.Minute * time.Duration(30)).Unix(),
@@ -82,6 +93,9 @@ func GenerateJWT(user interface{}) string {
 }
 
 func ValidateToken(w http.ResponseWriter, r *http.Request, next http.HandlerFunc) {
+/*________________________________________TESTING FUNCTION________________________________________*/
+log.Println("\n\nValidateToken\n")
+
 	token, err := request.ParseFromRequestWithClaims(r, request.OAuth2Extractor, &MyClaimsType{}, func(token *jwt.Token) (interface{}, error) {
 		return publicKey, nil
 	})

@@ -7,30 +7,55 @@ import (
 	"github.com/gorilla/mux"
 	"net/http"
 	"strings"
+	"log"
+	//"bytes"
+	//"encoding/json"
 )
 
 //____________________________ INSERT ________________________________________//
-func (c *UserEntityController) SignUp(w http.ResponseWriter, r *http.Request) {
+func (c *UserEntityController) Register(w http.ResponseWriter, r *http.Request) {
+/*________________________________________TESTING FUNCTION________________________________________*/
+log.Println("\nRegister")
 
-	err := HyperText.BodyValidate(r, &ue)
+	goHtmlstruct := UserEntity{
+		Username: r.FormValue("username"),
+		Email: r.FormValue("email"),
+		Password: r.FormValue("password"),
+		Image: r.FormValue("image"),
+	}
+/*
+    b, err := json.Marshal(goHtmlstruct)
+    if err != nil {
+        log.Println(err)
+        return
+    }
+	log.Println(string(b))
+	
+	j := []byte(b)*/
+/*
+	r.Body = goHtmlstruct
+	j = r.Body
+	err := HyperText.BodyValidateJson(j, &ue)
 
 	if err != nil {
-		HyperText.HttpTrueResponse(w, http.StatusOK, []byte(HyperText.CustomResponses["wrong-body"]))
+		HyperText.HttpTemplateResponse(w, http.StatusOK, HyperText.TemplateResponses["wrong-body"], nil)
 		return
 	}
 
 	err = c.UserEntityRepository.InsertUserEntity(ue)
 	if err != nil {
-		HyperText.HttpTrueResponse(w, http.StatusOK, []byte(HyperText.CustomResponses["error-database"]))
+		HyperText.HttpTemplateResponse(w, http.StatusOK, HyperText.TemplateResponses["error-database"], nil)
 		return
 	}
-
-	HyperText.HttpTrueResponse(w, http.StatusOK, []byte(HyperText.CustomResponses["success-insert"]))
+*/
+	HyperText.HttpTemplateResponse(w, http.StatusOK, HyperText.TemplateResponses["user-signup-success"], goHtmlstruct)
 	return
 }
 
 //____________________________ VERIFY ________________________________________//
 func (c *UserEntityController) Login(w http.ResponseWriter, r *http.Request) {
+/*________________________________________TESTING FUNCTION________________________________________*/
+log.Println("\n\nuser-entity.login()\n")
 
 	err := HyperText.BodyValidate(r, &uev)
 
@@ -55,6 +80,8 @@ func (c *UserEntityController) Login(w http.ResponseWriter, r *http.Request) {
 
 //____________________________ UPDATE SINGLE _________________________________//
 func (c *UserEntityController) UpdateSingle(w http.ResponseWriter, r *http.Request) {
+/*________________________________________TESTING FUNCTION________________________________________*/
+log.Println("\n\nuser-entity.update-single()\n")
 
 	ueus.Username = strings.ToLower(mux.Vars(r)["username"])
 
@@ -85,6 +112,8 @@ func (c *UserEntityController) UpdateSingle(w http.ResponseWriter, r *http.Reque
 
 //____________________________ UPDATE ________________________________________//
 func (c *UserEntityController) Update(w http.ResponseWriter, r *http.Request) {
+/*________________________________________TESTING FUNCTION________________________________________*/
+log.Println("\n\nuser-entity.update()\n")
 
 	ueu.Username = strings.ToLower(mux.Vars(r)["username"])
 
@@ -115,6 +144,8 @@ func (c *UserEntityController) Update(w http.ResponseWriter, r *http.Request) {
 
 //____________________________ DISABLE _______________________________________//
 func (c *UserEntityController) Disable(w http.ResponseWriter, r *http.Request) {
+/*________________________________________TESTING FUNCTION________________________________________*/
+log.Println("\n\nuser-entity.disable()\n")
 
 	uev.Username = strings.ToLower(mux.Vars(r)["username"])
 
@@ -138,6 +169,8 @@ func (c *UserEntityController) Disable(w http.ResponseWriter, r *http.Request) {
 
 //____________________________ GET UNIQUE ____________________________________//
 func (c *UserEntityController) GetUnique(w http.ResponseWriter, r *http.Request) {
+/*________________________________________TESTING FUNCTION________________________________________*/
+log.Println("\n\nuser-entity.get-unique()\n")
 
 	uep.Username = strings.ToLower(mux.Vars(r)["username"])
 
@@ -155,6 +188,8 @@ func (c *UserEntityController) GetUnique(w http.ResponseWriter, r *http.Request)
 
 //____________________________ GET ALL ENABLED WHILE _________________________//
 func (c *UserEntityController) GetAllEnabledWhile(w http.ResponseWriter, r *http.Request) {
+/*________________________________________TESTING FUNCTION________________________________________*/
+log.Println("\n\nuser-entity.get-all-enabled-while()\n")
 
 	position := mux.Vars(r)["position"]
 	value := mux.Vars(r)["value"]
@@ -173,6 +208,8 @@ func (c *UserEntityController) GetAllEnabledWhile(w http.ResponseWriter, r *http
 
 //____________________________ GET ALL ENABLED _______________________________//
 func (c *UserEntityController) GetAllEnabled(w http.ResponseWriter, r *http.Request) {
+/*________________________________________TESTING FUNCTION________________________________________*/
+log.Println("\n\nuser-entity.get-all-enabled()\n")
 
 	ues, err := c.UserEntityRepository.GetAllEnabledUserEntities(ues)
 
@@ -188,6 +225,8 @@ func (c *UserEntityController) GetAllEnabled(w http.ResponseWriter, r *http.Requ
 
 //____________________________ GET ALL _______________________________________//
 func (c *UserEntityController) GetAll(w http.ResponseWriter, r *http.Request) {
+/*________________________________________TESTING FUNCTION________________________________________*/
+log.Println("\n\nuser-entity.get-all()\n")
 
 	ues, err := c.UserEntityRepository.GetAllUserEntities(ues)
 
@@ -203,6 +242,8 @@ func (c *UserEntityController) GetAll(w http.ResponseWriter, r *http.Request) {
 
 //____________________________ DELETE ________________________________________//
 func (c *UserEntityController) Delete(w http.ResponseWriter, r *http.Request) {
+/*________________________________________TESTING FUNCTION________________________________________*/
+log.Println("\n\nuser-entity.delete()\n")
 
 	username := strings.ToLower(mux.Vars(r)["username"])
 

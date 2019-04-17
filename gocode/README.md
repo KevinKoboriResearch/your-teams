@@ -1,7 +1,7 @@
 # Tutorial
 
 # open CMD
-# C:GoProjects/yourteams
+# cd go/GoProjects/YourTeams/gocode/src/backend
 # export GOPATH=$HOME/go/GoProjects/YourTeams/gocode
 
 <!--

@@ -8,7 +8,7 @@ type UserEntityController struct {
 }
 
 type UserEntity struct {
-	Username string `json:"username" validate:"required,username-length,username-used"`
+	Username string `json:"username" validate:"required,username-length"`//,username-used"`
 	Email    string `json:"email" validate:"required,email,email-used"`
 	Password string `json:"password" validate:"required,password-length"`
 	Image    string `json:"image" validate:"omitempty,url"`

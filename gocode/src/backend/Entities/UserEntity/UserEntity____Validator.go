@@ -6,10 +6,13 @@ import (
 	"gopkg.in/go-playground/validator.v9"
 	"gopkg.in/mgo.v2/bson"
 	"strings"
+	"log"
 )
 
 //__ USERNAME USED ___________________________________________________________//
 func ValidateUsernameUsed(username validator.FieldLevel) bool {
+/*________________________________________TESTING FUNCTION________________________________________*/log.Println("\n\nValidateUsernameUsed\n")
+
 	c := Interface.OpenSession(DOCNAME)
 	u := strings.ToLower(username.Field().String())
 	result := UserEntity{}
@@ -20,6 +23,8 @@ func ValidateUsernameUsed(username validator.FieldLevel) bool {
 
 //__ USERNAME EXIST __________________________________________________________//
 func ValidateUsernameExist(username validator.FieldLevel) bool {
+/*________________________________________TESTING FUNCTION________________________________________*/log.Println("\n\n...\n")
+
 	c := Interface.OpenSession(DOCNAME)
 	u := strings.ToLower(username.Field().String())
 	result := UserEntity{}
@@ -30,17 +35,23 @@ func ValidateUsernameExist(username validator.FieldLevel) bool {
 
 //__ USERNAME LENGTH__________________________________________________________//
 func ValidateUsernameLength(username validator.FieldLevel) bool {
+/*________________________________________TESTING FUNCTION________________________________________*/log.Println("\n\n...\n")
+
 	length := len(username.Field().String())
 	return length >= 5
 }
 
 //__ PASSWORD LENGTH _________________________________________________________//
 func ValidatePasswordLength(password validator.FieldLevel) bool {
+/*________________________________________TESTING FUNCTION________________________________________*/log.Println("\n\n...\n")
+
 	length := len(password.Field().String())
 	return length >= 8
 }
 
 func ValidatePasswordMatch(password validator.FieldLevel) bool {
+/*________________________________________TESTING FUNCTION________________________________________*/log.Println("\n\n...\n")
+
 	c := Interface.OpenSession(DOCNAME)
 	u := password.Field().String()
 	result := UserEntity{}
@@ -51,6 +62,8 @@ func ValidatePasswordMatch(password validator.FieldLevel) bool {
 
 //__ EMAIL USED ______________________________________________________________//
 func ValidateEmailUsed(email validator.FieldLevel) bool {
+/*________________________________________TESTING FUNCTION________________________________________*/log.Println("\n\n...\n")
+
 	c := Interface.OpenSession(DOCNAME)
 	e := strings.ToLower(email.Field().String())
 	result := UserEntity{}
@@ -61,6 +74,8 @@ func ValidateEmailUsed(email validator.FieldLevel) bool {
 
 //__ UPDATE SINGLE ___________________________________________________________//
 func ValidateUpdateSingle(c *UserEntityController, ueus UserEntityUpdateSingle) (err interface{}) {
+/*________________________________________TESTING FUNCTION________________________________________*/log.Println("\n\n...\n")
+
 	if ueus.Position == "username" {
 		var u UserUsername
 		u.Username = ueus.Value
@@ -97,6 +112,8 @@ func ValidateUpdateSingle(c *UserEntityController, ueus UserEntityUpdateSingle) 
 
 //__ UPDATE __________________________________________________________________//
 func ValidateUpdate(ueu UserEntityUpdate) interface{} {
+/*________________________________________TESTING FUNCTION________________________________________*/log.Println("\n\n...\n")
+
 	if ueu.Email != "" {
 		var e UserEmail
 		e.Email = ueu.Email

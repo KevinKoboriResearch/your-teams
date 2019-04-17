@@ -7,6 +7,9 @@ import (
 )
 
 func Logger(inner http.Handler, name string) http.Handler {
+/*________________________________________TESTING FUNCTION________________________________________*/
+log.Println("\n\n...\n")
+
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		start := time.Now()
 		inner.ServeHTTP(w, r)

@@ -2,13 +2,14 @@ package ServerSetup
 
 import (
 	"backend/Entities/UserEntity"
+	"backend/Entities/SiteEntity"
 	"backend/HyperText"
 	"backend/Interface"
 	"backend/Units/UserFriend"
 	"github.com/gorilla/mux"
 	"github.com/rs/cors"
-	"log"
 	"net/http"
+	"log"
 )
 
 const (
@@ -18,6 +19,9 @@ const (
 )
 
 func StartServer() {
+/*________________________________________TESTING FUNCTION________________________________________*/
+log.Println("\n\nServerSetup.StartServer()\n")
+
 	Interface.StartConectionDatabase()
 	HyperText.StartValidator()
 	StartValidatorUserEntity()
@@ -29,22 +33,29 @@ func StartServer() {
 	})
 	router := CreateAllRoutes()
 	handler := c.Handler(router)
-	log.Print("\n		 					Starting myServer...\n\n")
+	log.Print("\n		 					Starting Server...\n\n")
 	if err := http.ListenAndServe(SERVER_HOST, handler); err != nil {
 		panic(err)
 	}
 }
 
 func CreateAllRoutes() (routes *mux.Router) {
+/*________________________________________TESTING FUNCTION________________________________________*/
+log.Println("\n\nServerSetup.CreateAllRoutes()\n")
+	
+	siteEntityRoutes := SiteEntity.SiteEntityRoutes()
 	userEntityRoutes := UserEntity.UserEntityRoutes()
-	userFriendRoutes := UserFriend.UserFriendRoutes()
-	appRoutes := append(userEntityRoutes, userFriendRoutes...)
-	//	appRoutes := append(appRoutes, userGameRoutes...)
+	userEntityFriendRoutes := UserFriend.UserFriendRoutes()
+	appRoutes := append(siteEntityRoutes, userEntityRoutes...)
+	appRoutes = append(appRoutes, userEntityFriendRoutes...)
 	routes = HyperText.NewRouter(appRoutes)
 	return routes
 }
 
 func StartValidatorUserEntity() {
+/*________________________________________TESTING FUNCTION________________________________________*/
+log.Println("\n\nServerSetup.StartValidatorUserEntity()\n")
+
 	HyperText.Validate.RegisterValidation("username-used", UserEntity.ValidateUsernameUsed)
 	HyperText.Validate.RegisterValidation("username-exist", UserEntity.ValidateUsernameExist)
 	HyperText.Validate.RegisterValidation("username-length", UserEntity.ValidateUsernameLength)
@@ -53,6 +64,9 @@ func StartValidatorUserEntity() {
 }
 
 func StartValidatorInterfaceEntity() {
+/*________________________________________TESTING FUNCTION________________________________________*/
+log.Println("\n\nServerSetup.StartValidatorInterfaceEntity()\n")
+	
 	HyperText.Validate.RegisterValidation("name-used", Interface.ValidateNameUsed)
 	HyperText.Validate.RegisterValidation("name-exist", Interface.ValidateNameExist)
 }

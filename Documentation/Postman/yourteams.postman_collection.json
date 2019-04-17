@@ -99,7 +99,7 @@
 		{
 			"id": "2cfbae8b-59de-4f24-a157-6ee3661bde9d",
 			"name": "Get Unique",
-			"url": "http://localhost:8080/Search/User&q=negao",
+			"url": "http://localhost:8080/Search/User&q=luizao",
 			"description": null,
 			"data": [],
 			"dataMode": "params",
@@ -127,7 +127,7 @@
 			"auth": null,
 			"events": [],
 			"folder": "70629265-80b6-4e55-a94f-54d52ae4cb79",
-			"rawModeData": "{\n\"user1\":\"negao\"\n}",
+			"rawModeData": "{\n\"user1\":\"luizao\"\n}",
 			"headers": "",
 			"pathVariables": {}
 		},
@@ -162,7 +162,7 @@
 			"auth": null,
 			"events": [],
 			"folder": "70629265-80b6-4e55-a94f-54d52ae4cb79",
-			"rawModeData": "{\n\"user1\":\"negao\",\n\"user2\":\"\"\n}",
+			"rawModeData": "{\n\"user1\":\"luizao\",\n\"user2\":\"\"\n}",
 			"headers": "",
 			"pathVariables": {}
 		},
@@ -214,14 +214,14 @@
 			"auth": null,
 			"events": null,
 			"folder": "0a3b9278-770c-49e3-b0cd-42bb19a144a3",
-			"rawModeData": "{\n\"username\":\"negao\",\n\"password\":\"123456\",\n\"abbreviation\":\"CS GO\",\n\"name\":\"Counter Strike Global Ofensive\",\n\"desc\":\"iae mano vlw por me chamar\",\n\"enable\":true\n}",
+			"rawModeData": "{\n\"username\":\"luizao\",\n\"password\":\"123456\",\n\"abbreviation\":\"CS GO\",\n\"name\":\"Counter Strike Global Ofensive\",\n\"desc\":\"iae mano vlw por me chamar\",\n\"enable\":true\n}",
 			"headers": "",
 			"pathVariables": {}
 		},
 		{
 			"id": "89b20a44-768d-4a53-b165-9bae17c28da5",
 			"name": "UpdateSingle",
-			"url": "http://localhost:8080/negao/YourAccount&q=UpdateSingle",
+			"url": "http://localhost:8080/luizao/YourAccount&q=UpdateSingle",
 			"description": null,
 			"data": [],
 			"dataMode": "raw",
@@ -239,7 +239,7 @@
 		{
 			"id": "bb86617e-70ef-43d2-b60a-7480c8d91526",
 			"name": "Disable",
-			"url": "http://localhost:8080/negao/YourAccount&q=Disable",
+			"url": "http://localhost:8080/luizao/YourAccount&q=Disable",
 			"description": null,
 			"data": [],
 			"dataMode": "raw",
@@ -257,7 +257,7 @@
 		{
 			"id": "bbadb1c0-65e1-4b56-b38e-d260b0f9d9c5",
 			"name": "Update",
-			"url": "http://localhost:8080/negao/YourAccount&q=Update",
+			"url": "http://localhost:8080/luizao/YourAccount&q=Update",
 			"description": null,
 			"data": [],
 			"dataMode": "raw",
@@ -268,7 +268,7 @@
 			"auth": null,
 			"events": null,
 			"folder": "1604a024-a595-47fb-ab10-11a42035bae7",
-			"rawModeData": "{\n\"email\":\"kevin@company.com\",\n\"image\":\"http://www.xxx.jpg\"\n}",
+			"rawModeData": "{\n\"email\":\"luizao@company.com\",\n\"image\":\"http://www.xxx.jpg\"\n}",
 			"headers": "",
 			"pathVariables": {}
 		},
@@ -286,7 +286,7 @@
 			"auth": null,
 			"events": null,
 			"folder": "0a3b9278-770c-49e3-b0cd-42bb19a144a3",
-			"rawModeData": "{\n\"username\":\"negao\",\n\"password\":\"123456\",\n\"abbreviation\":\"CS GO\",\n\"name\":\"Counter Strike Global Ofensive\",\n\"desc\":\"iae mano vlw por me chamar\",\n\"enable\":true\n}",
+			"rawModeData": "{\n\"username\":\"luizao\",\n\"password\":\"123456\",\n\"abbreviation\":\"CS GO\",\n\"name\":\"Counter Strike Global Ofensive\",\n\"desc\":\"iae mano vlw por me chamar\",\n\"enable\":true\n}",
 			"headers": "",
 			"pathVariables": {}
 		},
@@ -304,14 +304,14 @@
 			"auth": null,
 			"events": [],
 			"folder": "0a3b9278-770c-49e3-b0cd-42bb19a144a3",
-			"rawModeData": "{\n\"username\":\"negao\",\n\"password\":\"123456\",\n\"name\":\"counter strike global ofensive\",\n\"position\":\"abbre\",\n\"value\":\"cs go\"\n}",
+			"rawModeData": "{\n\"username\":\"luizao\",\n\"password\":\"123456\",\n\"name\":\"counter strike global ofensive\",\n\"position\":\"abbre\",\n\"value\":\"cs go\"\n}",
 			"headers": "",
 			"pathVariables": {}
 		},
 		{
 			"id": "d547eaf5-92f8-447e-8859-2c8c3cedf9ca",
 			"name": "Delete",
-			"url": "http://localhost:8080/negao/YourAccount&q=Delete",
+			"url": "http://localhost:8080/luizao/YourAccount&q=Delete",
 			"description": null,
 			"data": [],
 			"dataMode": "raw",
@@ -346,7 +346,7 @@
 		{
 			"id": "eb25890e-e83b-4a5b-a7c9-f56aa3981ca8",
 			"name": "Request",
-			"url": "http://localhost:8080/negao&q=solicitation",
+			"url": "http://localhost:8080/luizao&q=solicitation",
 			"description": null,
 			"data": [],
 			"dataMode": "raw",
@@ -375,7 +375,7 @@
 			"auth": null,
 			"events": null,
 			"folder": "1604a024-a595-47fb-ab10-11a42035bae7",
-			"rawModeData": "{\n\"username\":\"negao\",\n\"email\":\"kevin@company.com\",\n\"password\":\"12345678\",\n\"image\":\"http://www.xxx.jpg\",\n\"admin\":true,\n\"enable\":false\n}",
+			"rawModeData": "{\n\"username\":\"luizao\",\n\"email\":\"luizao@company.com\",\n\"password\":\"12345678\",\n\"image\":\"http://www.xxx.jpg\",\n\"admin\":true,\n\"enable\":false\n}",
 			"headers": "",
 			"pathVariables": {}
 		},
@@ -444,7 +444,7 @@
 			"auth": null,
 			"events": null,
 			"folder": "1604a024-a595-47fb-ab10-11a42035bae7",
-			"rawModeData": "{\n\"username\":\"negao\",\n\"password\":\"12345678\"\n}",
+			"rawModeData": "{\n\"username\":\"luizao\",\n\"password\":\"12345678\"\n}",
 			"headers": "",
 			"pathVariables": {}
 		}
