@@ -16,13 +16,15 @@ import (
 func (c *UserEntityController) Register(w http.ResponseWriter, r *http.Request) {
 /*________________________________________TESTING FUNCTION________________________________________*/
 log.Println("\nRegister")
-
+/*
 	goHtmlstruct := UserEntity{
 		Username: r.FormValue("username"),
 		Email: r.FormValue("email"),
 		Password: r.FormValue("password"),
 		Image: r.FormValue("image"),
-	}
+	}*/
+
+	//var formData = json.Unmarshal(r.Body.id("#signupForm").serializeArray());
 /*
     b, err := json.Marshal(goHtmlstruct)
     if err != nil {
@@ -32,10 +34,10 @@ log.Println("\nRegister")
 	log.Println(string(b))
 	
 	j := []byte(b)*/
-/*
-	r.Body = goHtmlstruct
-	j = r.Body
-	err := HyperText.BodyValidateJson(j, &ue)
+
+	//r.Body = goHtmlstruct
+	//j = r.Body
+	err := HyperText.BodyValidate(r, &ue)
 
 	if err != nil {
 		HyperText.HttpTemplateResponse(w, http.StatusOK, HyperText.TemplateResponses["wrong-body"], nil)
@@ -47,8 +49,8 @@ log.Println("\nRegister")
 		HyperText.HttpTemplateResponse(w, http.StatusOK, HyperText.TemplateResponses["error-database"], nil)
 		return
 	}
-*/
-	HyperText.HttpTemplateResponse(w, http.StatusOK, HyperText.TemplateResponses["user-signup-success"], goHtmlstruct)
+
+	HyperText.HttpTemplateResponse(w, http.StatusOK, HyperText.TemplateResponses["user-signup-success"], ue)
 	return
 }
 

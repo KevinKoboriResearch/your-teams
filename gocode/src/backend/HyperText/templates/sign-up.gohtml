@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Sign Up</h1>
-    <form action="/Register" method="POST">
+    <form action="/Register" method="POST" id="signupForm" name="signupForm">
         <label>Username:</label>
         <input type="text" name="username" placeholder="username">
         <label>Email:</label>
@@ -20,4 +20,15 @@
         <input type="submit">
     </form>
 </body>
+<script>
+/*var formData = JSON.stringify($("#signupForm").serializeArray());
+$.ajax({
+  type: "POST",
+  url: "/Register",//"serverUrl",
+  data: formData,
+  success: function(){},
+  dataType: "json",
+  contentType : "application/json"
+});*/
+<script>
 </html>

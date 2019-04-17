@@ -1,8 +1,8 @@
 # Tutorial
 
-# open CMD
-# cd go/GoProjects/YourTeams/gocode/src/backend
-# export GOPATH=$HOME/go/GoProjects/YourTeams/gocode
+open CMD
+cd go/GoProjects/YourTeams/gocode/src/backend
+export GOPATH=$HOME/go/GoProjects/YourTeams/gocode
 
 <!--
 go get github.com/codegangsta/negroni
